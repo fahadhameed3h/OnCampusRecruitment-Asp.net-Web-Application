@@ -1,0 +1,41 @@
+﻿@model OnCampusRecruitment.Models.EmpCV
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Delete Resume</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal active well">
+        <dt class="active">
+            @Html.DisplayNameFor(model => model.EmpProfile.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpProfile.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CvName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CvName)
+        </dd>
+               
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" style="width:20%"/> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

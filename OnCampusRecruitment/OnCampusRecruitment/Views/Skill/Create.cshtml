@@ -1,0 +1,66 @@
+﻿@using OnCampusRecruitment.DAL;
+@model OnCampusRecruitment.Models.EmpSkill
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Add New Skill</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SkillTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SkillTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SkillTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Usage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Usage,"Select Usage...", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Category,"Select Category...", htmlAttributes: new { @class = "form-control" })                
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>        
+      
+        @*<div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.EmpProfileID, "EmpProfileID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.EditorFor(model => model.EmpProfileID, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.EmpProfileID } })              
+               @Html.ValidationMessageFor(model => model.EmpProfileID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        @Html.HiddenFor(model => model.EmpProfileID, new { @Value = ViewBag.EmpProfileID })
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

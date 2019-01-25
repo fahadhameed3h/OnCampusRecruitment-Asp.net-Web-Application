@@ -1,0 +1,43 @@
+﻿@model OnCampusRecruitment.Models.ProfilePhoto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProfilePhoto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpProfile.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpProfile.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoContent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpProfileID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

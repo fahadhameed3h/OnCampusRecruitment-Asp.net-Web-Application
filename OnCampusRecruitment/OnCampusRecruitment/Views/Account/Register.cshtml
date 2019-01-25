@@ -1,0 +1,77 @@
+﻿@model OnCampusRecruitment.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2 style="font-weight:bolder">Create Student Account.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+   
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="well">
+
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(m => m.RollNo, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.RollNo, new { @class = "form-control", style = "float:left;width:68px" })
+                    @Html.EnumDropDownListFor(model => model.degree, null, new { @class = " form-control", style = "float:left;width:initial" })
+                    @Html.EnumDropDownListFor(model => model.department, null, htmlAttributes: new { @class = " form-control", style = "float:left;width:initial" })
+                    <select name="Year" class="form-control" style="float:left;width:initial">
+                        @{
+                        int i = (DateTime.Now.Year);
+                        while (i > 1970)
+                        {
+                    <option>@i</option>
+                            i--;
+                        }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        @*For Company User Account ONLY*@
+        @*@Html.HiddenFor(m => m.UserType, new { @Value = 1 })*@
+        @*@Html.HiddenFor(m => m.CompanyName, new { @Value = "Student" })*@
+        @*For Role (Name => student/company/admin)*@
+        @Html.HiddenFor(m => m.Name, new { @class = "form-control", @Value = "student" })
+        @Html.HiddenFor(m => m.CompanyName, new { @Value = "Student" })
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" style="width:70%"  value="Register" />
+            </div>
+        </div>
+    </div>
+                            }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

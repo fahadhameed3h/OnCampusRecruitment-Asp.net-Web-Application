@@ -1,0 +1,160 @@
+﻿@model OnCampusRecruitment.Models.Qualification
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight:900;">Education</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">       
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="well">
+            <fieldset>
+                <legend style="font-weight:bolder">School Information</legend>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SchoolName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SchoolName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SchoolDegree, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.SchoolDegree, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SchoolDegree, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SchoolYearPassing, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select name="SchoolYearPassing" class="form-control">
+                            @{
+                                int i = (DateTime.Now.Year);
+                                while (i > 1970)
+                                {
+                                    <option value="@i">@i</option>
+                                    i--;
+                                }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.SchoolYearPassing, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </fieldset>
+        </div>
+        
+        <div class="well">
+            <fieldset>
+                <legend style="font-weight:bolder">College Information</legend>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CollegeName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CollegeName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CollegeName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CollegeDegree, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.CollegeDegree, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CollegeDegree, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CollegeYearPassing, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select name="CollegeYearPassing" class="form-control">
+                            @{
+                            int j = (DateTime.Now.Year);
+                            while (j > 1970)
+                            {
+                        <option value="@j">@j</option>
+                                j--;
+                            }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.CollegeYearPassing, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </fieldset>
+</div>
+
+        <div class="well">
+            <fieldset>
+                <legend style="font-weight:bolder">University Information</legend>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UniverstyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UniverstyName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UniverstyName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DepartmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.DepartmentName, "Select Degree...", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GPA, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GPA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GPA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UniverstyYearPassing, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select name="UniverstyYearPassing" class="form-control">
+                            @{
+                            int k = (DateTime.Now.Year);
+                            while (k > 1970)
+                            {
+                        <option value="@k">@k</option>
+                                k--;
+                            }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(model => model.UniverstyYearPassing, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </fieldset>
+</div>
+      
+        <fieldset>
+            <legend style="font-weight:bolder">Personal Profile<span style="font-weight:lighter ; font-size:x-small ;padding-left:20px">This will appear on your Resume.</span></legend>  
+            <div class="form-group">
+                <div class="col-md-5 col-md-offset-3">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 50, @rows = 4, @style = "resize: none;" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </fieldset>
+          
+        @Html.HiddenFor(model => model.EmpProfileID, new { @Value = ViewBag.EmpProfileID } )
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create"  class="btn btn-default" style="width:100%" />
+                    </div>
+                </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

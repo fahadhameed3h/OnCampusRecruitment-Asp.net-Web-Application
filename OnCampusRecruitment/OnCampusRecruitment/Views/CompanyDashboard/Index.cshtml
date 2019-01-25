@@ -1,0 +1,159 @@
+﻿@using OnCampusRecruitment.Models;
+@model IEnumerable<CompanyProfile>
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/CompanyDashboardLayout.cshtml";
+}
+<hr />
+
+<div class="row">
+    <div class="panel panel-primary col-md-4">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">
+                @foreach (CompanyProfile emp in ViewBag.A)
+            {
+                    <span style="font-weight:bolder;font-size:large; text-align:center">
+                        @Html.ActionLink(emp.GroupOfCompany, "Edit", "CompanyProfile",new { @style="color:white"})
+                    </span>
+                }
+
+            </h3>
+        </div>
+        <div class="panel-body ">
+            @foreach (CompanyLogo item in ViewBag.B)
+            {
+                if (item.PhotoContent == null)
+                {
+                    @*<img src="~/Images/ProfilePic.png" width="250" height="300" style="border-radius:50%" />*@
+                    <img src="~/Images/NoLogo.png" width="200" height="200" style="border-radius:30%" onclick="location.href='@Url.Action("Create", "Logo")';return false;" />
+                }
+                else
+                {
+                    string imageBase64 = Convert.ToBase64String(item.PhotoContent);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                    <img src="@imageSrc" width="200" height="200" style="border-radius:30%" onclick="location.href='@Url.Action("Edit", "Logo", new { id = ViewBag.CurrentUserBag})';return false;" />
+                }
+            }
+            <br />
+            
+        </div>
+    </div>
+
+    <div class="panel panel-primary col-md-7 pull-right">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">Details</h3>
+        </div>
+        <div class="panel-body text-left">
+            @foreach (CompanyProfile item in ViewBag.A)
+            {
+                <div class="text-left" style="font-weight:bolder; text-align:center">
+                    <ul class="list-group">
+                        <li>
+                            <label style="text-align:left;padding-right:100px ">Industry</label>
+                            @Html.ActionLink((item.Category).ToString(), "Edit", "CompanyProfile")
+                        </li>                       
+                        <li>
+                            <label style="text-align:left;padding-right:100px">City</label>
+                            @Html.ActionLink((item.City).ToString(), "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">Website</label>
+                            @Html.ActionLink(item.CompanyWebsite, "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">Office Contact</label>
+                            @Html.ActionLink((item.OfficeContact).ToString(), "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">Fax</label>
+                            @Html.ActionLink(item.Fax, "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">Operating Since</label>
+                            @Html.ActionLink(item.OperatingSince, "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">No Of Offices</label>
+                            @Html.ActionLink((item.NoOfOffices).ToString(), "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">Ownership Type</label>
+                            @Html.ActionLink((item.OwnershipType).ToString(), "Edit", "CompanyProfile")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:100px">Owner Name</label>
+                            @Html.ActionLink(item.OwnerName, "Edit", "CompanyProfile")
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="panel panel-primary ">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">@Html.ActionLink("Posted Jobs", "Index", "Job")</h3>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    Functional Area
+                </th>
+                <th>
+                    Total Position
+                </th>
+                <th>
+                    Job Location
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                    Minimum Qualification
+                </th>
+                <th>
+                    Degree Title
+                </th>
+                <th>
+                    Apply By
+                </th>
+                <th>
+                    Post Date 
+                </th>                
+            </tr>
+            @foreach (CompanyJobPost item in ViewBag.C)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FunctionArea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPosition)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinimumEducation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DegreeTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplyBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobPostingDate)
+                    </td>                   
+                </tr>
+            }
+        </table>
+    </div>
+</div>

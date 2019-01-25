@@ -1,0 +1,81 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.EmpWorkExperience>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Your Work Experieces</h2>
+<hr />
+<p>
+    @Html.ActionLink("Add New Experience", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr class="active">      
+        <th>
+            @Html.DisplayNameFor(model => model.ExperienceType)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>     
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+        <th>
+            Starting Date
+        </th>
+        <th>
+           Ending Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Current)
+        </th> 
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExperienceType)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.Company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Current)
+        </td>
+        <td>
+            
+                <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id=item.EmpWorkExperienceID })">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <span class="sr-only">Edit</span>
+                </a>
+
+                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id=item.EmpWorkExperienceID })">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span class="sr-only">Delete</span>
+                </a>
+         
+            @*  @Html.ActionLink("Edit", "Edit", new { id=item.EmpWorkExperienceID }) |       *@
+            @*  @Html.ActionLink("Details", "Details", new { id=item.EmpWorkExperienceID }) | *@
+            @*  @Html.ActionLink("Delete", "Delete", new { id=item.EmpWorkExperienceID })     *@
+        </td>
+    </tr>
+}
+
+</table>

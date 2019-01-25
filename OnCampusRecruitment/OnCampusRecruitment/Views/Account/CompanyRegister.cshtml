@@ -1,0 +1,62 @@
+﻿@model OnCampusRecruitment.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Company Register";
+}
+
+<h2 style="font-weight:bolder">Regsister your Company on our site and find best candidates.</h2>
+
+@using (Html.BeginForm("CompanyRegister", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <h4 style="font-weight:bold">Create a new Employer Account.</h4>
+    
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="well">
+       
+         <div class="form-group">
+            @Html.LabelFor(m => m.CompanyName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div> 
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+
+       @*For Role (Name => student/company/admin)*@
+            @Html.HiddenFor(m => m.Name, new { @Value = "company" })            
+            @Html.HiddenFor(m => m.RollNo, new { @Value = "1111" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit"  class="btn btn-default" style="width:70%"  value="Register" />
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

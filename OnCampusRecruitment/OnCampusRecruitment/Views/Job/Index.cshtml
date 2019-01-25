@@ -1,0 +1,70 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.CompanyJobPost>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/CompanyDashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Posted Jobs</h2>
+<hr />
+<p>
+    @Html.ActionLink("Post new Job", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr class="active">             
+        <th>
+            @Html.DisplayNameFor(model => model.FunctionArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPosition)
+        </th>       
+        <th>
+            @Html.DisplayNameFor(model => model.JobLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.MinimumEducation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DegreeTitle)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.ApplyBy)
+        </th>             
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>       
+        <td>
+            @Html.DisplayFor(modelItem => item.FunctionArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPosition)
+        </td>      
+        <td>
+            @Html.DisplayFor(modelItem => item.JobLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.MinimumEducation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DegreeTitle)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyBy)
+        </td>         
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyJobPostID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyJobPostID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyJobPostID })
+        </td>
+    </tr>
+}
+
+</table>

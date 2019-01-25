@@ -1,0 +1,234 @@
+﻿@using OnCampusRecruitment.Models;
+@model IEnumerable<EmpProfile>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>CV</title>
+</head>
+
+<body>
+    <div class="row well">
+        <div >
+            <div class="col-xs-5">
+                <hr />
+                @foreach (EmpProfile emp in ViewBag.A)
+                {
+                    <h1 style="color:blue;font-weight:bolder;font-size:40px;text-align:left ; padding-left:20px ;font-variant:small-caps">
+                        @Html.Raw(emp.FirstName)
+                        @Html.Raw(emp.LastName)   <br />
+                    </h1>
+                }   
+               <br />
+                    <div style="text-align:left;font-style: italic;font-family:Verdana;padding-left:20px">
+                        @Html.Raw(ViewBag.StudentDescription)
+                    </div>
+                    <br />                
+            </div>            
+            <div class="col-xs-1">
+                <hr />
+                <br />               
+                <br />
+                <br />
+                <h5 style="padding-left:10px ;font-weight:bold ;text-align:left">Phone</h5>
+                <h5 style="padding-left:10px ;font-weight:bold ;text-align:left">Email</h5>
+                <h5 style="padding-left:10px ;font-weight:bold ;text-align:left">Address</h5>                
+            </div>         
+            <div class="col-xs-3">
+                <hr />              
+                <br />
+                <br />           
+                <br />
+                @foreach (EmpProfile emp in ViewBag.A)
+                {                 
+                    <p style="text-align:right">
+                        @Html.Raw(emp.Contact)
+                    </p>                                   
+                }
+                <p style="font-style: italic ;text-align:right">  @User.Identity.Name  </p>
+
+                @foreach (EmpProfile emp in ViewBag.A)
+                {
+                    <p style="text-align:right">
+                        @Html.Raw(emp.Address)   <br />
+                        @Html.Raw(emp.City)   <br />
+                        Pakistan
+                    </p>
+                }
+            </div>        
+             <div class="col-xs-3">
+                <hr />
+                @foreach (ProfilePhoto item in ViewBag.B)
+                {
+                    if (item.PhotoContent == null)
+                    {
+                        <img src="~/Images/ProfilePic.png" width="175" height="200" style="border-radius:100%" class="img-thumbnail" />
+                    }
+                    else
+                    {
+                        string imageBase64 = Convert.ToBase64String(item.PhotoContent);
+                        string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                        <img src="@imageSrc" width="175" height="200" style="border-radius:100%" class="img-thumbnail" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+  
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-weight:bolder ; padding-left:20px ; font-size:large">
+                <span class="glyphicon glyphicon-tag" aria-hidden="true" style="padding-right:10px"></span>
+                        Education</div>
+            <div class="panel-body">
+                @foreach (Qualification item in ViewBag.Qualification)
+                {
+                    //University Data
+                    <div class="row" style="font-size:large;">
+                        <div class="col-xs-4" style="padding-left:40px ; font-weight:bolder">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="padding-right:10px"></span>   @Html.Raw(item.DepartmentName)
+                        </div>                                                                
+                        <div class="col-xs-4" style="font-style:italic ; padding-left:50px">
+                            @Html.Raw(item.UniverstyName)
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.UniverstyYearPassing)
+                        </div>  
+                        <div class="col-xs-1"></div>
+                     </div>
+
+                    //College Data
+                    <div class="row" style="font-size:large">
+                        <div class="col-xs-4" style="padding-left:40px ; font-weight:bolder">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="padding-right:10px"></span>   @Html.Raw(item.CollegeDegree)
+                        </div>                       
+                        <div class="col-xs-4" style="font-style:italic ; padding-left:50px">
+                            @Html.Raw(item.CollegeName)
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.CollegeYearPassing)
+                        </div>                                           
+                        <div class="col-xs-1"></div>
+                    </div>
+
+                    //School Data
+                    <div class="row" style="font-size:large">
+                        <div class="col-xs-4" style="padding-left:40px  ; font-weight:bolder">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="padding-right:10px"></span>    @Html.Raw(item.SchoolDegree)
+                        </div>                        
+                        <div class="col-xs-4" style="font-style:italic ; padding-left:50px">
+                            @Html.Raw(item.SchoolName)
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.SchoolYearPassing)
+                        </div>               
+                        <div class="col-xs-1" >                            
+                        </div>                           
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-weight:bolder ; padding-left:20px ; font-size:large">
+                <span class="glyphicon glyphicon-tag" aria-hidden="true" style="padding-right:10px"></span>
+                Work Experience
+            </div>
+            <div class="panel-body">
+                @foreach (EmpWorkExperience item in ViewBag.Experience)
+                {                    
+                    <div class="row" style="font-size:large;">
+                        <div class="col-xs-3" style="font-weight:bolder ; padding-left:40px">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="padding-right:10px"></span>  @Html.Raw(item.JobTitle)
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.Company)
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                        <div class="col-xs-1">
+                            @Html.Raw(item.ExperienceType)
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                        <div class="col-xs-3">
+                            @Html.Raw(item.Category)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-weight:bolder ; padding-left:20px ; font-size:large">
+                <span class="glyphicon glyphicon-tag" aria-hidden="true" style="padding-right:10px"></span>
+                Skills
+            </div>
+            <div class="panel-body">
+                @foreach (EmpSkill item in ViewBag.Skill)
+                {
+                    <div class="row" style="font-size:large;">
+                        <div class="col-xs-4" style="font-weight:bolder ; padding-left:40px">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="padding-right:10px"></span>  @Html.Raw(item.SkillTitle)
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.Usage)
+                        </div>
+                        <div class="col-xs-1">
+                        </div>
+                        <div class="col-xs-3">
+                            @Html.Raw(item.Category)
+                        </div>
+                        <div class="col-xs-1">
+                        </div>                        
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="font-weight:bolder ; padding-left:20px ; font-size:large">
+                <span class="glyphicon glyphicon-tag" aria-hidden="true" style="padding-right:10px"></span>
+                Personal Information
+            </div>
+            <div class="panel-body">
+                <div class="row container">                    
+                        <span style="font-size:large;font-weight:bold; padding-left:50px"> CNIC</span>                   
+                        <span style="font-size:large ;padding-left:250px">@ViewBag.CNIC</span>                    
+                </div>
+                <div class="row container">
+                    <span style="font-size:large;font-weight:bold; padding-left:50px">  Date Of Birth</span>
+                    <span style="font-size:large ;padding-left:200px">@ViewBag.DOB</span>                     
+                </div>
+                <div class="row container">
+                    <span style="font-size:large;font-weight:bold; padding-left:50px">  Nationality</span>
+                    <span style="font-size:large ;padding-left:225px">@ViewBag.Nationality</span>                      
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+</body>
+</html>

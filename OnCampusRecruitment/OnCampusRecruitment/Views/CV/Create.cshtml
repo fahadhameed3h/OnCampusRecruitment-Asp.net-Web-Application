@@ -1,0 +1,53 @@
+﻿@model OnCampusRecruitment.Models.EmpCV
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Upload Your Resume</h2>
+
+@using (Html.BeginForm("Create", "CV", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="well">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CvName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CvName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CvName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.EmpProfileID, "EmpProfileID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EmpProfileID, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.EmpProfileID } })
+                    @Html.ValidationMessageFor(model => model.EmpProfileID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Upload CV ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" id="CVContent" name="upload" accept="application/doc , application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <p>Only .pdf , .doc , .xml files accepted.</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Upload" class="btn btn-default" style="width:100%"/>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

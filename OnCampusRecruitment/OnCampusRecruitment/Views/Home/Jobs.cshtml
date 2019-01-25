@@ -1,0 +1,99 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.CompanyJobPost>
+@{
+    ViewBag.Title = "Jobs";
+}
+<hr />
+<br />
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search By Department</h3>
+            </div>
+            <div class="panel-body"> 
+                @Html.ActionLink("All", "Jobs", "Home", new { searchString = "" }, new { @style="font-weight:bolder ; color:black"})         <br />
+                @Html.ActionLink("Botany", "Jobs", "Home", new { searchString = "Botany" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Biotechnology", "Jobs", "Home", new { searchString = "Biotechnology" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Chemistry", "Jobs", "Home", new { searchString = "Chemistry" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Computer Science", "Jobs", "Home", new { searchString = "Computer_Science" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Environmental Science", "Jobs", "Home", new { searchString = "Environmental_Science" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Mathematics", "Jobs", "Home", new { searchString = "Mathematics" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Electrical Engineering", "Jobs", "Home", new { searchString = "Electrical_Engineering" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Microbiology", "Jobs", "Home", new { searchString = "Microbiology" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Physics", "Jobs", "Home", new { searchString = "Physics" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Mass Communications", "Jobs", "Home", new { searchString = "Mass_Communications" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Zoology", "Jobs", "Home", new { searchString = "Zoology" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Economics", "Jobs", "Home", new { searchString = "Economics" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Fine Arts", "Jobs", "Home", new { searchString = "Fine_Arts" }, new { @style = "font-weight:bolder ; color:black" })               <br />                 
+                @Html.ActionLink("Geography", "Jobs", "Home", new { searchString = "Geography" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Law", "Jobs", "Home", new { searchString = "Law" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Fine Arts", "Jobs", "Home", new { searchString = "Fine_Arts" }, new { @style = "font-weight:bolder ; color:black" })   <br />                                     
+                @Html.ActionLink("Management Studies", "Jobs", "Home", new { searchString = "Management_Studies" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Philosophy & IDC", "Jobs", "Home", new { searchString = "Fine_Arts" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Education", "Jobs", "Home", new { searchString = "Education" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Geography", "Jobs", "Home", new { searchString = "Geography" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Political Science", "Jobs", "Home", new { searchString = "Political_Science" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Psychology", "Jobs", "Home", new { searchString = "Psychology" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Sociology", "Jobs", "Home", new { searchString = "Sociology" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Statistics", "Jobs", "Home", new { searchString = "Statistics" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("English", "Jobs", "Home", new { searchString = "English" }, new { @style = "font-weight:bolder ; color:black" })               <br />
+                @Html.ActionLink("Urdu", "Jobs", "Home", new { searchString = "Urdu" }, new { @style = "font-weight:bolder ; color:black" })                <br />
+                @Html.ActionLink("French", "Jobs", "Home", new { searchString = "French" }, new { @style = "font-weight:bolder ; color:black" })               <br />
+                @Html.ActionLink("Islamic Studies", "Jobs", "Home", new { searchString = "Islamic_Studies" }, new { @style = "font-weight:bolder ; color:black" })         <br />
+                @Html.ActionLink("Persian", "Jobs", "Home", new { searchString = "Persian" }, new { @style = "font-weight:bolder ; color:black" })               <br />
+                @Html.ActionLink("Punjabi", "Jobs", "Home", new { searchString = "Punjabi" }, new { @style = "font-weight:bolder ; color:black" })                     <br />              
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8 ">
+        <table class="table table-hover table-responsive">
+            <tr>
+                <th class="active">                   
+                    <a href="@Url.Action("Jobs", "Home", new { sortOrder = ViewBag.NameSortParm })">
+                        Company Name <span class="glyphicon glyphicon-sort" aria-hidden="true" style="color:black">
+                        </span> 
+                    </a>                    
+                </th>
+                <th class="active">
+                    @Html.DisplayNameFor(model => model.FunctionArea)
+                </th>
+                <th class="active">
+                    @Html.DisplayNameFor(model => model.DegreeTitle)
+                </th>
+                <th class="active">
+                    <a href="@Url.Action("Jobs", "Home", new { sortOrder = ViewBag.DateSortParm })">
+                        Job Post Date <span class="glyphicon glyphicon-sort" aria-hidden="true" style="color:black">
+                        </span> 
+                    </a>                    
+                </th>
+                <th class="active"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyProfile.GroupOfCompany)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FunctionArea)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DegreeTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobPostingDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Apply Now", "Details","Job", new { id = item.CompanyJobPostID }, new { @class = "btn btn-default btn-sm" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

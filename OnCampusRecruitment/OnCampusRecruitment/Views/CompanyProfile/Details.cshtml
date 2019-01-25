@@ -1,0 +1,74 @@
+﻿@model OnCampusRecruitment.Models.CompanyProfile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal jumbotron">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupOfCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupOfCompany)
+        </dd>        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OfficeContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OfficeContact)
+        </dd>
+
+    </dl>
+</div>
+<p>   
+    @Html.ActionLink("Back to List", "Company","Admin")
+</p>

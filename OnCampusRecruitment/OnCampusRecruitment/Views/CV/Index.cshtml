@@ -1,0 +1,32 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.EmpCV>
+
+@{
+    ViewBag.Title = "CV";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Manage Your CV</h2>
+<hr />
+<p>
+    @Html.ActionLink("Upload New CV", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr class="active">       
+        <th>
+            @Html.DisplayNameFor(model => model.CvName)
+        </th>                
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CvName)
+        </td>                
+        <td>                                   
+            @Html.ActionLink("Delete", "Delete", new { id = item.EmpCVID } , new { @class= "btn btn-primary" ,@style="width:30%" })
+        </td>
+    </tr>
+}
+</table>
+<h4>You can upload Only Two Resumes.</h4>

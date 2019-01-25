@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container col-md-12">
+    <div class="carousel slide" id="myCarousel" data-ride="carousel" data-interval="3000" >
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li class="active" data-slide-to="0" data-target="#myCarousel" style="background-color:blue"></li>
+            <li data-slide-to="1" data-target="#myCarousel" style="background-color:blue"></li>
+            <li data-slide-to="2" data-target="#myCarousel" style="background-color:blue"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active" id="slide1">
+                <img src="~/Images/Carousal2.png" width="100%" height="70" />
+                <div class="carousel-caption">
+                    <h3 style="color:maroon ; font-weight:900">Student Placement </h3>
+                    <p style="color:maroon ;font-weight:bold">GCU Lahore student job placement and search site.</p>
+                </div><!-- end carousel-caption-->
+            </div><!-- end item -->
+
+            <div class="item" id="slide2">
+                <img src="~/Images/CompanyCarousal.png" width="100%" height="70" />
+                <div class="carousel-caption" style="color:black ; font-weight:bolder">                
+                    <h3 style="color:maroon ; font-weight:900 ">Telant Hunt</h3>
+                    <p style="color:maroon ;font-weight:bold">Find best candidates</p>
+                    </div><!-- end carousel-caption-->
+                </div><!-- end item -->
+
+            <div class="item" id="slide3">
+                <img src="~/Images/CarousalMeet.jpg" width="100%" height="70" />
+                <div class="carousel-caption" style="color:black ; font-weight:bolder">
+                    <h3 style="color:maroon ; font-weight:900 ">Find best Opertunities</h3>
+                    <p style="color:maroon ;font-weight:bold">Get Your destiny </p>
+                </div><!-- end carousel-caption-->
+            </div><!-- end item -->
+        </div><!-- carousel-inner -->
+        <!-- Controls -->
+        <a class="left carousel-control" data-slide="prev" href="#myCarousel"><span class="icon-prev" style="color:red"></span></a>
+        <a class="right carousel-control" data-slide="next" href="#myCarousel"><span class="icon-next" style="color:red"></span></a>
+    </div>
+</div>
+
+<div class="container row">
+    <h1 class="col-md-6">Find Best Jobs Near You...</h1>
+
+    <div class="col-md-8">
+        <h1>Post Jobs and Find best Candidates.</h1>
+    </div>
+</div>
+    <div class="col-md-offset-10">
+
+        @{ 
+            if (User.Identity.IsAuthenticated == false)
+            {
+                @Html.ActionLink("Create Employer Account", "CompanyRegister", "Account", null, new { @class = "btn btn-primary" })
+            }
+        }        
+    </div>   

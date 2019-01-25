@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.JobApplication>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/CompanyDashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Job Applications</h2>
+
+<hr />
+<table class="table">
+    <tr class="active">        
+        <th>
+            Job ID
+        </th>        
+        <th>
+            Applicant Profile
+        </th>
+        <th>
+            Educational Details
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a style="color:black ; font-weight:bolder " href="@Url.Action("Details", "Job",new { id = item.CompanyJobPostID })">                   
+                    @item.CompanyJobPostID
+                </a>              
+            </td>
+           
+            <td>
+                <a id="modal-opener" style="color:black ; font-weight:bolder " href="@Url.Action("Details","Profile",new { id = item.EmpProfileID })">
+                    @item.EmpProfile.FirstName @item.EmpProfile.LastName
+                </a> 
+            </td>           
+            <td>
+                @Html.ActionLink("Details", "Details", "Qualifications", new { id = item.EmpProfileID }, new { @class = "btn btn-default btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>

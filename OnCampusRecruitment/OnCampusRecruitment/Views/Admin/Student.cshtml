@@ -1,0 +1,57 @@
+﻿@using OnCampusRecruitment.Models
+@model IEnumerable<EmpProfile>
+
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Students Data</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-2 well">
+        @Html.ActionLink("Companies Data", "Company", "Admin", null, new { @class = "btn btn-default", @style = "width:100%" }) <hr />
+        @Html.ActionLink("Students Data", "Student", "Admin", null, new { @class = "btn btn-default", @style = "width:100%" }) <hr />
+        @Html.ActionLink("Site Roles", "Index", "Role", null, new { @class = "btn btn-default", @style = "width:100%" })  <hr />
+    </div>
+    <div class="panel panel-primary col-md-8 col-md-offset-1">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">Students Data</h3>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    CNIC
+                </th>
+                <th>
+                    Contact
+                </th>                
+                <th>
+                    Details
+                </th>
+            </tr>
+            @foreach (EmpProfile item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CNIC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Profile", new { id = item.EmpProfileID }, null)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

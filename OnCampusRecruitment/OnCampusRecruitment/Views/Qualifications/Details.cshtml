@@ -1,0 +1,95 @@
+﻿@model OnCampusRecruitment.Models.Qualification
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="font-weight:900;">Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal jumbotron">              
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolYearPassing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolYearPassing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolDegree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolDegree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollegeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollegeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollegeYearPassing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollegeYearPassing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollegeDegree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollegeDegree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UniverstyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UniverstyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UniverstyYearPassing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UniverstyYearPassing)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GPA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPA)
+        </dd>
+
+    </dl>
+</div>

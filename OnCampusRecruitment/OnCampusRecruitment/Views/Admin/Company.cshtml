@@ -1,0 +1,65 @@
+﻿@using OnCampusRecruitment.Models
+@model IEnumerable<CompanyProfile>
+
+@{
+    ViewBag.Title = "Companies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Companies Data</h2>
+<hr />
+<div class="row">
+    <div class="col-md-2 well">
+        @Html.ActionLink("Companies Data", "Company", "Admin", null, new { @class = "btn btn-default", @style = "width:100%" }) <hr />
+        @Html.ActionLink("Students Data", "Student", "Admin", null, new { @class = "btn btn-default", @style = "width:100%" }) <hr />
+        @Html.ActionLink("Site Roles", "Index", "Role", null, new { @class = "btn btn-default", @style = "width:100%" })  <hr />
+   </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary col-md-8 col-md-offset-1">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">Company Data</h3>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Website
+                </th>
+                <th>
+                    Contact
+                </th>                
+                <th>
+                    Verified
+                </th>
+                <th>
+                    Allow Access
+                </th>                
+            </tr>
+            @foreach (CompanyProfile item in ViewBag.A)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GroupOfCompany)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyWebsite)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OfficeContact)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Verified)
+                    </td>                   
+                    <td>
+                        @Html.ActionLink("Verify", "AdminEdit", "CompanyProfile", new { id = item.CompanyProfileID }, null)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>          
+}
+</div>

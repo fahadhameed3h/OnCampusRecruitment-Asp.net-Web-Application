@@ -1,0 +1,76 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.CompanyProfile>
+@{
+    ViewBag.Title = "Companies";
+}
+<hr />
+<br />
+
+<div class="row">
+
+    <div class="col-md-3">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search By Industry</h3>
+            </div>
+            <div class="panel-body">
+                @Html.ActionLink("All", "Companies", "Home", new { searchString = "" }, null)         <br />
+                @Html.ActionLink("Textiles/Garments", "Companies", "Home", new { searchString = "Textiles" }, null)         <br />
+                @Html.ActionLink("N.G.O./Social Services", "Companies", "Home", new { searchString = "NGO" }, null)         <br />
+                @Html.ActionLink("Food & Beverages", "Companies", "Home", new { searchString = "Food" }, null)         <br />
+                @Html.ActionLink("Manufacturing", "Companies", "Home", new { searchString = "Manufacturing" }, null)         <br />
+                @Html.ActionLink("Real Estate/Property", "Companies", "Home", new { searchString = "Real_Estate" }, null)         <br />
+                @Html.ActionLink("Information Technology", "Companies", "Home", new { searchString = "IT" }, null)         <br />                
+                @Html.ActionLink("Education/Training", "Companies", "Home", new { searchString = "Education" }, null)         <br />
+                @Html.ActionLink("Engineering", "Companies", "Home", new { searchString = "Engineering" }, null)         <br />
+                @Html.ActionLink("Charity Organization", "Companies", "Home", new { searchString = "Charity_Organization" }, null)         <br />
+                @Html.ActionLink("Fast Moving Consumer Goods (FMCG)", "Companies", "Home", new { searchString = "FMCG" }, null)         <br />
+                @Html.ActionLink("Retail", "Companies", "Home", new { searchString = "Retail" }, null)         <br />
+                @Html.ActionLink("Healthcare/Hospital/Medical", "Companies", "Home", new { searchString = "Health" }, null)               <br />
+                @Html.ActionLink("Construction/Cement/Metals", "Companies", "Home", new { searchString = "Construction" }, null)         <br />
+                @Html.ActionLink("Services", "Companies", "Home", new { searchString = "Services" }, null)         <br />
+                @Html.ActionLink("Shipping/Marine", "Companies", "Home", new { searchString = "Shipping" }, null)   <br />
+                @Html.ActionLink("Travel/Tourism/Transportation", "Companies", "Home", new { searchString = "Travel" }, null)         <br />
+                @Html.ActionLink("AutoMobile", "Companies", "Home", new { searchString = "AutoMobile" }, null)         <br />
+                @Html.ActionLink("Advertising/PR", "Companies", "Home", new { searchString = "Advertising" }, null)         <br />
+                @Html.ActionLink("Banking/Financial Services", "Companies", "Home", new { searchString = "Banking" }, null)               
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8 ">
+        <table class="table table-condensed table-hover table-responsive">
+            <tr>
+                <th class="active">
+                    <a href="@Url.Action("Companies", "Home", new { sortOrder = ViewBag.NameSortParm })">
+                        Company Name <span class="glyphicon glyphicon-sort" aria-hidden="true" style="color:black">
+                        </span>
+                    </a>
+                </th>
+                <th class="active">
+                    @Html.DisplayNameFor(model => model.GroupOfCompany)
+                </th>
+                <th class="active">
+                    @Html.DisplayNameFor(model => model.CompanyWebsite)
+                </th>               
+                <th class="active"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GroupOfCompany)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyWebsite)
+                    </td>                    
+                    <td>
+                       @* @Html.ActionLink("View Company", "Details", "Job", new { id = item.CompanyJobPostID }, null)*@
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

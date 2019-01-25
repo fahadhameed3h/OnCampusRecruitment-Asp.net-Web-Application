@@ -1,0 +1,106 @@
+﻿@model OnCampusRecruitment.Models.EmpWorkExperience
+
+@{
+    ViewBag.Title = "Details"; Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmpWorkExperience</h4>
+    <hr />
+    <dl class="dl-horizontal jumbotron">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpProfile.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpProfile.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperienceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperienceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CareerLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CareerLevel)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Current)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Current)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExperienceYears)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExperienceYears)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpWorkExperienceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

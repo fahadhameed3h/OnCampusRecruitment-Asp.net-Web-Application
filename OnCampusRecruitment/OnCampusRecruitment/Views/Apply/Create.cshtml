@@ -1,0 +1,28 @@
+﻿@model OnCampusRecruitment.Models.JobApplication
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Apply</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+                @Html.EditorFor(model => model.CompanyJobPostID, new { htmlAttributes = new { @class = "form-control", @style ="display:none",@Value = ViewBag.CompanyJobPostID } })               
+                @Html.EditorFor(model => model.EmpProfileID, new { htmlAttributes = new { @class = "form-control", @style = "display:none", @Value = ViewBag.EmpProfileID } })            
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,51 @@
+﻿@model OnCampusRecruitment.Models.ProfilePhoto
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+    @using (Html.BeginForm("Edit", "ProfilePhoto", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.EmpProfileID)
+            <div class="well">
+                <fieldset>
+                    <legend style="font-weight:bold">Change Profile Picture</legend>
+                    <div class="col-md-4 col-md-offset-3">
+                        @{
+                            if (Model.PhotoContent == null)
+                            {
+                                <img src="~/Images/ProfilePic.png" width="200" height="200" style="border-radius:50%" />
+                            }
+                            else
+                            {
+                                string imageBase64 = Convert.ToBase64String(Model.PhotoContent);
+                                string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                                <img src="@imageSrc" width="200" height="200" style="border-radius:50%" />
+                            }
+                        }
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    @Html.Label("Change Photo", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="PhotoContent" value="Choose Photo" name="upload" accept="image/jpg, image/jpeg, image/png, image/tif" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Change Photo" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+                            }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

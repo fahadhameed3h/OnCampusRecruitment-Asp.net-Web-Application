@@ -1,0 +1,84 @@
+﻿@model OnCampusRecruitment.Models.EmpCV
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2>Replace your CV</h2>
+
+@using (Html.BeginForm("Edit", "CV", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.EmpCVID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CvName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CvName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CvName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.CvContent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CvContent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CvContent, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-6">
+                @{                    
+                    string imageBase64 = Convert.ToBase64String(Model.CvContent);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                
+                   
+                <iframe src="http://docs.google.com/gview?
+                        url=imagesrc/google.pdf&embedded=true" style="width:600px; height:500px;" frameborder="0"></iframe>
+                }
+             </div>
+        </div>
+
+        @*<div class="form-group">
+            <div class="col-md-offset-6">
+                @{
+                    string imageBase64 = Convert.ToBase64String(Model.CvContent);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                    <img src="@imageSrc" width="200" height="200" />
+                }
+            </div>
+        </div>*@
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.EmpProfileID, "EmpProfileID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EmpProfileID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmpProfileID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("CV", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="CVContent" name="upload" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+                    }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

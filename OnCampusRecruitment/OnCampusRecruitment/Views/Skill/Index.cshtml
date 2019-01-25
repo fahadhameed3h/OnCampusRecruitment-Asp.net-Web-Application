@@ -1,0 +1,56 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.EmpSkill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight: 900;">Your Skills</h2>
+<hr/>
+<p>
+    @Html.ActionLink("Add New Skill", "Create",null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr class="active">       
+        <th>
+            @Html.DisplayNameFor(model => model.SkillTitle)
+        </th>    
+        <th>
+            @Html.DisplayNameFor(model => model.Usage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>        
+        <td>
+            @Html.DisplayFor(modelItem => item.SkillTitle)
+        </td>              
+        <td>
+            @Html.DisplayFor(modelItem => item.Usage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            <a class="btn btn-success btn-sm" href="@Url.Action("Edit", new { id=item.EmpSkillID })">
+                <i class="glyphicon glyphicon-pencil"></i>
+                <span class="sr-only">Edit</span>
+            </a>
+           
+            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id=item.EmpSkillID })">
+                <i class="glyphicon glyphicon-remove"></i>
+                <span class="sr-only">Delete</span>
+            </a>
+
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.EmpSkillID })*@             
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.EmpSkillID })*@
+        </td>
+    </tr>
+}
+
+</table>

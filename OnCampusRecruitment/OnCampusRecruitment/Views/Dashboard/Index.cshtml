@@ -1,0 +1,196 @@
+﻿@using OnCampusRecruitment.Models;
+@model IEnumerable<EmpProfile>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+<hr />
+
+<div class="row">
+    <div class="panel panel-primary col-md-4">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">Profile</h3>
+        </div>
+        <div class="panel-body ">
+            @foreach (ProfilePhoto item in ViewBag.B)
+            {
+                if (item.PhotoContent == null)
+                {                    
+                    <img src="~/Images/ProfilePic.png" width="200" height="206" style="border-radius:30%" onclick="location.href='@Url.Action("Create", "ProfilePhoto")';return false;" />
+                }
+                else
+                {
+                    string imageBase64 = Convert.ToBase64String(item.PhotoContent);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                    <img src="@imageSrc" width="200" height="206" style="border-radius:30%"   onclick="location.href='@Url.Action("Edit", "ProfilePhoto", new { id = ViewBag.CurrentUserBag})';return false;" />
+                }
+            }
+            <br />
+            @foreach (EmpProfile emp in ViewBag.A)
+            {
+                <span style="font-weight:bolder;font-size:large; text-align:center">
+                    @Html.ActionLink(emp.FirstName, "Edit", "Profile")
+                    @Html.ActionLink(emp.LastName, "Edit", "Profile")<br/>
+                    @Html.ActionLink((emp.Gender).ToString(), "Edit", "Profile")
+                </span>
+            }
+        </div>
+    </div>    
+    <div class="panel panel-primary col-md-8" style="padding-left:20px">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">Education</h3>
+        </div>
+        <div class="panel-body text-left">
+            @foreach (Qualification item in ViewBag.C)
+            {
+                <div class="text-left" style="font-weight:bolder; text-align:center">
+                    <ul class="list-group">
+                        <li >
+                            <label style="text-align:left;padding-right:100px ">Degree Title</label>
+                            @Html.ActionLink((item.DepartmentName).ToString(), "Edit", "Qualifications")
+                        </li>
+                        <li>
+                            <label style="text-align:left;padding-right:150px ">GPA</label>
+                            @Html.ActionLink((item.GPA).ToString(), "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">Passing Year</label>
+                            @Html.ActionLink((item.UniverstyYearPassing).ToString(), "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">Universty Name</label>
+                            @Html.ActionLink(item.UniverstyName, "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">Degree Title</label>
+                            @Html.ActionLink((item.SchoolDegree).ToString(), "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">School Name</label>
+                            @Html.ActionLink(item.SchoolName, "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">Passing Year</label>
+                            @Html.ActionLink((item.SchoolYearPassing).ToString(), "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">College Name</label>
+                            @Html.ActionLink(item.CollegeName, "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">Inter Degree</label>
+                            @Html.ActionLink((item.CollegeDegree).ToString(), "Edit", "Qualifications")
+                        </li>
+                        <li >
+                            <label style="text-align:left;padding-right:100px">Passing Year</label>
+                            @Html.ActionLink((item.CollegeYearPassing).ToString(), "Edit", "Qualifications")
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-primary col-md-5">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">@Html.ActionLink("Skills","Index","EmpSkill")</h3>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Usage
+                </th>
+            </tr>
+            @foreach (EmpSkill item in ViewBag.D)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usage)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+    <div class="panel panel-primary col-md-7">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">@Html.ActionLink("Experience", "Index", "WorkExperience")</h3>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    JobTitle
+                </th>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Current
+                </th>
+                <th>
+                    StartDate
+                </th>
+                <th>
+                    EndDate
+                </th>
+            </tr>
+            @foreach (EmpWorkExperience item in ViewBag.E)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Current)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-primary col-md-3">
+        <div class="panel-heading" style="font-weight:900">
+            <h3 class="panel-title">CV Templates</h3>
+        </div>
+        <br />
+        @Html.ActionLink("Resume Template 1", "Index", "SampleCV") <br />
+        @Html.ActionLink("Resume Template 2", "CVTemplate", "SampleCV")
+    </div>
+    <div class="panel panel-primary col-md-3 col-md-offset-1">
+        <div class="panel-heading  style="font-weight:900">
+            <h3 class="panel-title">@Html.ActionLink("Your Resume", "Index", "CV")</h3>
+        </div>
+        @foreach (EmpCV item in ViewBag.F)
+        {
+            @Html.ActionLink(item.CvName, "Index", "CV", null, new { @class = "btn btn-link" })    <br />
+        }
+    </div>    
+</div>

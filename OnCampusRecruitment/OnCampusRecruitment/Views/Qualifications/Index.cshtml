@@ -1,0 +1,93 @@
+﻿@model IEnumerable<OnCampusRecruitment.Models.Qualification>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DashboardLayout.cshtml";
+}
+
+<h2 style="font-weight:900;">Education</h2>
+<hr/>
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.EmpProfile.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniverstyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniverstyYearPassing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GPA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollegeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollegeYearPassing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollegeDegree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolYearPassing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolDegree)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpProfile.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UniverstyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UniverstyYearPassing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GPA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CollegeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CollegeYearPassing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CollegeDegree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolYearPassing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolDegree)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.QualificationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QualificationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QualificationID })
+        </td>
+    </tr>
+}
+</table>

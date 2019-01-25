@@ -1,0 +1,99 @@
+﻿@using OnCampusRecruitment.DAL;
+@using OnCampusRecruitment.Models;
+@using Microsoft.AspNet.Identity;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CampRecruit</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")       
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")   
+
+    <script>
+        $(function () {
+            $("#dialog-modal").dialog({
+                autoOpen:false,                
+                modal: true
+            });
+            $("#modal-opener").click(function () {
+                $("#dialog-modal").dialog("open");
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">           
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*<a class="navbar-brand" href="/"> <img src="~/Images/Logo5.png" width="70" height="30" alt="Logo" /></a>*@
+                @Html.ActionLink("GCU Placement", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style= "font-weight:bolder;font-style: oblique;font-family:Rockwell" })
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Jobs", "Jobs", "Home")</li>
+                    <li>@Html.ActionLink("Companies", "Companies", "Home")</li>
+                    <li>@Html.ActionLink("Employer", "Index", "X")</li>
+                    @{
+                        if (User.Identity.IsAuthenticated == true)
+                        {
+                            if (User.IsInRole("student"))
+                            {
+                                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                            }
+                            else if (User.IsInRole("company"))
+                            {
+                               <li>@Html.ActionLink("Dashboard", "Index", "CompanyDashboard")</li>
+                            }
+                            else if (User.IsInRole("admin"))
+                            {
+                                <li>@Html.ActionLink("Dashboard", "Index", "admin")</li>
+                            }
+                        }
+                    }
+                </ul>
+                <form class="navbar-form pull-left">
+                    <input type="text" class="form-control" placeholder="Search this Site..."  style="width:150px">
+                    <button type="submit" class="btn btn-default"> <span class="glyphicon glyphicon-search"></span></button>
+                </form>          
+                    @Html.Partial("_LoginPartial")               
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content" >
+        @RenderBody()
+        <hr />
+        <footer>
+            &copy; @DateTime.Now.Year - On Campus Recruitment <span style="word-spacing: 50px; white-space:pre">  </span>
+
+            @Html.ActionLink("About Us", "", "")        |
+            @Html.ActionLink("Contact Us", "", "")     |
+            @Html.ActionLink("Employee", "", "")     |
+            @Html.ActionLink("Jobs", "", "")            |
+            @Html.ActionLink("Companies", "", "")    |
+            @Html.ActionLink("Employer", "", "")  
+            @{
+                    if (User.Identity.IsAuthenticated == false)
+                    {
+                        @Html.ActionLink("| Admin", "AdminRegister", "Account")
+                    }
+                }            
+        </footer>
+    </div>
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,210 @@
+﻿@using OnCampusRecruitment.Models;
+@model IEnumerable<EmpProfile>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>CV</title>
+</head>
+
+<body>
+
+    <div class="col-xs-8" style="padding-left:60px">
+            <div class="well">
+                <hr />
+                @foreach (EmpProfile emp in ViewBag.A)
+                {
+                <h1 style="color:blue;font-weight:bolder;font-size:50px;text-align:left ; padding-left:40px">
+                    @Html.Raw(emp.FirstName)
+                    @Html.Raw(emp.LastName)   <br />
+                </h1>
+                }
+                <p style="font-style: italic ;text-align:center ; padding-left:50px">  @User.Identity.Name  </p>
+            </div>
+            <fieldset>
+                <legend style="font-weight:bolder">Personal Profile</legend>
+                <div style="text-align:left;font-style: italic;font-family:Verdana">
+                    @Html.Raw(ViewBag.StudentDescription)
+                </div>
+                <br />
+            </fieldset>
+            <fieldset>
+                <legend style="font-weight:bolder">Education</legend>
+                @foreach (Qualification item in ViewBag.Qualification)
+                {
+                    //University Data
+                    <div class="row" style="font-size:large;font-weight:bolder">
+                        <div class="col-xs-4" style="padding-left:40px">
+                            @Html.Raw(item.DepartmentName)
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.UniverstyYearPassing)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5" style="font-style:italic ; padding-left:50px">
+                            @Html.Raw(item.UniverstyName)
+                        </div>
+                    </div>
+
+                    //College Data
+                    <div class="row" style="font-size:large;font-weight:bolder">
+                        <div class="col-xs-4" style="padding-left:40px">
+                            @Html.Raw(item.CollegeDegree)
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.CollegeYearPassing)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5" style="font-style:italic ; padding-left:50px">
+                            @Html.Raw(item.CollegeName)
+                        </div>
+                    </div>
+
+                    //School Data
+                    <div class="row" style="font-size:large;font-weight:bolder">
+                        <div class="col-xs-4" style="padding-left:40px">
+                            @Html.Raw(item.SchoolDegree)
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.Raw(item.SchoolYearPassing)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-5" style="font-style:italic ; padding-left:50px">
+                            @Html.Raw(item.SchoolName)
+                        </div>
+                    </div>
+                }
+            </fieldset>
+            <br />
+            <fieldset>
+                <legend style="font-weight:bolder">Work Experience</legend>
+                @foreach (EmpWorkExperience item in ViewBag.Experience)
+                {
+                    //University Data
+                <div class="row">
+                    <div class="col-xs-5" style="font-weight:bold ; padding-left:40px">
+                        @Html.Raw(item.JobTitle)
+                    </div>
+                    <div class="col-xs-1">
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.Raw(item.Company)
+                    </div>
+                    <div class="col-xs-1">
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.Raw(item.ExperienceType)
+                    </div>                   
+                </div>
+                }
+            </fieldset>
+            <br />
+            <fieldset>
+                <legend style="font-weight:bolder">Skills</legend>
+                @foreach (EmpSkill item in ViewBag.Skill)
+                {
+                    //University Data
+                <div class="row">
+                    <div class="col-xs-5" style="font-weight:bold ; padding-left:40px">
+                        @Html.Raw(item.SkillTitle)
+                    </div>
+                   
+                    <div class="col-xs-2">
+                        @Html.Raw(item.Usage)
+                    </div>
+                    <div class="col-xs-1">
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.Raw(item.Category)
+                    </div>
+                </div>
+                }
+            </fieldset>
+        </div>
+
+        <div class="col-xs-4 " style="padding-right:60px;padding-left:20px">
+            <div class="well">
+                <hr />
+                <div class="row" style="padding-left:20px">
+                    @foreach (ProfilePhoto item in ViewBag.B)
+                    {
+                        if (item.PhotoContent == null)
+                        {
+                    <img src="~/Images/ProfilePic.png" width="250" height="300" style="border-radius:100%" class="img-thumbnail" />
+                        }
+                        else
+                        {
+                            string imageBase64 = Convert.ToBase64String(item.PhotoContent);
+                            string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                    <img src="@imageSrc" width="200" height="233" style="border-radius:100%" class="img-thumbnail" />
+                        }
+                    }
+                </div>                             
+                <hr />
+                <div class="row">
+                    <h4 style="padding-left:20px ;padding-bottom:8px; font-weight:bold"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>CONTACT DETAILS</h4>
+                    @foreach (EmpProfile emp in ViewBag.A)
+                        {
+                    <h5 style="padding-left:20px ;font-weight:bold">Contact No.</h5>
+                    <p style="text-align:center">
+                        @Html.Raw(emp.Contact) <br />
+                    </p>
+                    <h5 style="padding-left:20px ;font-weight:bold">Address</h5>
+                    <p style="text-align:center">
+                        @Html.Raw(emp.Address)   <br />
+                        @Html.Raw(emp.City)   <br />
+                        Pakistan
+                    </p>
+                        }
+                    <hr />
+
+                </div>
+
+                <div class="row">
+                    <h4 style="padding-left:20px ;padding-bottom:8px; font-weight:bold"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>PERSONAL DETAILS</h4>
+
+                    <h5 style="padding-left:20px ;font-weight:bold">Date Of Birth</h5>
+                    <p style="text-align:center">
+                        @ViewBag.DOB <br />
+                    </p>
+
+                    @foreach (EmpProfile emp in ViewBag.A)
+                    {                    
+                    <h5 style="padding-left:20px ;font-weight:bold">Nationality</h5>
+                    <p style="text-align:center">
+                        @Html.Raw(emp.Nationality) <br />
+                    </p>
+                    <h5 style="padding-left:20px ;font-weight:bold">CNIC</h5>
+                    <p style="text-align:center">
+                        @Html.Raw(emp.CNIC) <br />
+                    </p>
+                    }
+                    <hr />
+                </div>
+                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
+        </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+</body>
+</html>

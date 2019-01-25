@@ -1,0 +1,42 @@
+﻿@model OnCampusRecruitment.Models.EmpCV
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmpCV</h4>
+    <hr />
+    <dl class="dl-horizontal jumbotron">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpProfile.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpProfile.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CvName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CvName)
+        </dd>       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CvContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CvContent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpCVID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
